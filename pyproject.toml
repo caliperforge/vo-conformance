@@ -1,0 +1,14 @@
+[project]
+name = "vo-conformance"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["pytest>=8"]
+
+[dependency-groups]
+dev = ["ruff", "pyright"]
+
+[tool.pytest.ini_options]
+markers = ["live: hits public services; excluded from the default run"]
+addopts = "-m 'not live' --strict-markers"
+pythonpath = ["."]
+testpaths = ["tests"]
