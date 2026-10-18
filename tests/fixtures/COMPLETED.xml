@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<uws:job xmlns:uws="http://www.ivoa.net/xml/UWS/v1.0" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1">
+  <uws:jobId>1</uws:jobId>
+  <uws:phase>COMPLETED</uws:phase>
+  <uws:results>
+    <uws:result id="result" xlink:href="http://example.com/tap/async/1/results/result"/>
+  </uws:results>
+</uws:job>

@@ -7,3 +7,12 @@ Which astronomy data clients handle which IVOA standard behaviours correctly, te
 - `uv run pytest -m live` runs the live checks and appends to `results/matrix.jsonl`.
 
 Each row is a JSON object with `client`, `service`, `behaviour` and `outcome`, where `outcome` is one of `pass`, `fail` or `not supported`.
+
+## Async jobs (UWS 1.1)
+
+Behaviour `async_jobs`: pyvo (`AsyncTAPJob`) and astroquery (`TapPlus`) each submit an async TAP query to CADC and IRSA, wait for the job to end and fetch its result.
+
+- `pass`: the client reaches COMPLETED and reads the result VOTable.
+- `fail`: the client raises its own error, or stops waiting in a phase other than COMPLETED, or reports a job as running that the service still holds in PENDING. Network errors are raised, not recorded.
+
+PENDING, HELD and SUSPENDED are covered by offline replays only.

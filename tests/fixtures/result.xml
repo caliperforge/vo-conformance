@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <TABLE>
+      <FIELD name="ra" datatype="double"/>
+      <DATA>
+        <TABLEDATA>
+          <TR><TD>150.1</TD></TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>

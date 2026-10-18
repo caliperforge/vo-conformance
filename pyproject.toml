@@ -2,10 +2,10 @@
 name = "vo-conformance"
 version = "0.1.0"
 requires-python = ">=3.11"
-dependencies = ["pytest>=8"]
+dependencies = ["pytest>=8", "pyvo==1.9.1", "astroquery==0.4.11"]
 
 [dependency-groups]
-dev = ["ruff", "pyright"]
+dev = ["ruff", "pyright", "requests-mock"]
 
 [tool.pytest.ini_options]
 markers = ["live: hits public services; excluded from the default run"]
