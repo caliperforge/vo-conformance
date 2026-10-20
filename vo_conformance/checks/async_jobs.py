@@ -16,6 +16,10 @@ SERVICES = {
         "https://gaia.ari.uni-heidelberg.de/tap",
         "SELECT TOP 5 source_id, ra, dec, phot_g_mean_mag FROM gaiadr3.gaia_source WHERE phot_g_mean_mag < 6 ORDER BY phot_g_mean_mag",
     ),
+    "MAST": (
+        "https://mast.stsci.edu/vo-tap/api/v0.1/caom",
+        "SELECT TOP 5 obs_id, s_ra, s_dec FROM ivoa.obscore",
+    ),
 }
 
 
