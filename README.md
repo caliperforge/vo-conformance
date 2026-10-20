@@ -6,7 +6,7 @@ Which astronomy data clients handle which IVOA standard behaviours correctly, te
 - `uv run pytest` runs the offline tests.
 - `uv run pytest -m live` runs the live checks and appends to `results/matrix.jsonl`.
 
-Each row is a JSON object with `client`, `service`, `behaviour` and `outcome`, where `outcome` is one of `pass`, `fail` or `not supported`.
+Each row is a JSON object with `client`, `service`, `behaviour`, `outcome` and an optional `note`, where `outcome` is one of `pass`, `fail` or `not supported`. A cell that runs past 120 s is `fail` with `note` `timeout after 120 s`.
 
 ## Daily results
 

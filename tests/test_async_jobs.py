@@ -14,7 +14,7 @@ from vo_conformance.checks.async_jobs import (
     check,
     pyvo_outcome,
 )
-from vo_conformance.runner import Row, record
+from vo_conformance.runner import record, run_cell
 
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
 JOB = "http://example.com/tap/async/1"
@@ -111,4 +111,4 @@ def test_astroquery_fails_when_service_left_job_pending(no_sleep):
 @pytest.mark.parametrize("service", SERVICES)
 @pytest.mark.parametrize("client", CLIENTS)
 def test_live(client, service):
-    record(Row(client, service, BEHAVIOUR, check(client, service)))
+    record(run_cell(client, service, BEHAVIOUR, check))
