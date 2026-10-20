@@ -8,6 +8,10 @@ Which astronomy data clients handle which IVOA standard behaviours correctly, te
 
 Each row is a JSON object with `client`, `service`, `behaviour` and `outcome`, where `outcome` is one of `pass`, `fail` or `not supported`.
 
+## Daily results
+
+`.github/workflows/daily.yml` runs the live checks at 11:00 UTC each day and commits the rows to `results/<YYYY-MM-DD>.jsonl`. One row is one client's outcome on one behaviour against one service on that date (UTC), with the fields above.
+
 ## Async jobs (UWS 1.1)
 
 Behaviour `async_jobs`: pyvo (`AsyncTAPJob`) and astroquery (`TapPlus`) each submit an async TAP query to CADC and IRSA, wait for the job to end and fetch its result.

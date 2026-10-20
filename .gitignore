@@ -1,4 +1,4 @@
-results/
+results/matrix.jsonl
 .venv/
 __pycache__/
 .pytest_cache/

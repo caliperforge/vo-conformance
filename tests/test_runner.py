@@ -40,3 +40,8 @@ def test_accepts_outcome(outcome):
 def test_matrix_is_gitignored():
     args = ["git", "check-ignore", "-q", "results/matrix.jsonl"]
     assert subprocess.run(args, check=False, cwd=ROOT).returncode == 0
+
+
+def test_dated_results_are_tracked():
+    args = ["git", "check-ignore", "-q", "results/2026-10-19.jsonl"]
+    assert subprocess.run(args, check=False, cwd=ROOT).returncode == 1
