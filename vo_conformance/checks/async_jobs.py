@@ -12,6 +12,10 @@ SERVICES = {
         "select top 3 observationID from caom2.Observation where collection='IRIS'",
     ),
     "IRSA": ("https://irsa.ipac.caltech.edu/TAP", "SELECT TOP 5 ra,dec FROM cosmos2015"),
+    "ARI": (
+        "https://gaia.ari.uni-heidelberg.de/tap",
+        "SELECT TOP 5 source_id, ra, dec, phot_g_mean_mag FROM gaiadr3.gaia_source WHERE phot_g_mean_mag < 6 ORDER BY phot_g_mean_mag",
+    ),
 }
 
 
