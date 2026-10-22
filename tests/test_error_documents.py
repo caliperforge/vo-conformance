@@ -104,11 +104,15 @@ def test_no_error_raised_fails():
     assert outcome(lambda: None, "x") == ("fail", "no error raised")
 
 
-def test_note_is_type_and_first_line_capped():
+@pytest.mark.parametrize(
+    ("text", "note"),
+    [("first\nsecond", "RuntimeError: first"), ("y" * 300, ("RuntimeError: " + "y" * 300)[:200])],
+)
+def test_note_is_type_and_first_line_capped(text, note):
     def run():
-        raise RuntimeError("y" * 300 + "\nsecond")
+        raise RuntimeError(text)
 
-    assert outcome(run, "x") == ("fail", ("RuntimeError: " + "y" * 300)[:200])
+    assert outcome(run, "x") == ("fail", note)
 
 
 def test_pyvo_network_error_propagates(requests_mock, service):
