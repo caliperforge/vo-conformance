@@ -1,0 +1,8 @@
+{"client": "pyvo", "service": "CADC", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "IRSA", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "ARI", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "MAST", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "CADC", "behaviour": "async_jobs", "outcome": "fail"}
+{"client": "astroquery", "service": "IRSA", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "ARI", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "MAST", "behaviour": "async_jobs", "outcome": "pass"}
