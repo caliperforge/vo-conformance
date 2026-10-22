@@ -29,11 +29,17 @@ def record(row: Row, path: Path = MATRIX) -> None:
 
 
 def run_cell(
-    client: str, service: str, behaviour: str, check: Callable[[str, str], str], limit: float = LIMIT
+    client: str,
+    service: str,
+    behaviour: str,
+    check: Callable[[str, str], str | tuple[str, str | None]],
+    limit: float = LIMIT,
 ) -> Row:
     with multiprocessing.Pool(1) as pool:
         try:
-            outcome = pool.apply_async(check, (client, service)).get(limit)
+            result = pool.apply_async(check, (client, service)).get(limit)
         except multiprocessing.TimeoutError:
             return Row(client, service, behaviour, "fail", f"timeout after {limit} s")
-    return Row(client, service, behaviour, outcome)
+    if isinstance(result, str):
+        return Row(client, service, behaviour, result)
+    return Row(client, service, behaviour, *result)

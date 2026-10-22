@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE xmlns="http://www.ivoa.net/xml/VOTable/v1.3" version="1.4">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="ERROR">Table vo_conformance_no_such_table not found</INFO>
+  </RESOURCE>
+</VOTABLE>

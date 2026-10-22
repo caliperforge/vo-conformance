@@ -14,6 +14,10 @@ def passes(client, service):
     return "pass"
 
 
+def fails_with_note(client, service):
+    return "fail", "x"
+
+
 def hangs(client, service):
     time.sleep(10)
     return "pass"
@@ -49,6 +53,12 @@ def test_run_cell_returns_outcome():
     row = run_cell("pyvo", "CADC", "async_jobs", passes)
     assert row == Row("pyvo", "CADC", "async_jobs", "pass")
     assert row.note is None
+
+
+def test_run_cell_returns_outcome_and_note():
+    assert run_cell("pyvo", "CADC", "async_jobs", fails_with_note) == Row(
+        "pyvo", "CADC", "async_jobs", "fail", "x"
+    )
 
 
 def test_run_cell_times_out():
