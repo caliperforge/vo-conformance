@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <TABLE>
+      <FIELD name="ID" datatype="char" arraysize="*"/>
+      <FIELD name="access_url" datatype="char" arraysize="*"/>
+      <FIELD name="service_def" datatype="char" arraysize="*"/>
+      <FIELD name="error_message" datatype="char" arraysize="*"/>
+      <FIELD name="semantics" datatype="char" arraysize="*"/>
+      <FIELD name="description" datatype="char" arraysize="*"/>
+      <FIELD name="content_type" datatype="char" arraysize="*"/>
+      <FIELD name="content_length" datatype="long"/>
+      <DATA>
+        <TABLEDATA>
+          <TR><TD>ivo://cadc.nrc.ca/IRIS?f212h000/IRAS-25um</TD><TD>http://example.com/data/f212h000.fits</TD><TD></TD><TD></TD><TD>#this</TD><TD>image file</TD><TD>image/fits</TD><TD>1008000</TD></TR>
+          <TR><TD>ivo://cadc.nrc.ca/IRIS?f212h000/IRAS-25um</TD><TD></TD><TD>soda</TD><TD></TD><TD>#cutout</TD><TD>image cutout</TD><TD>image/fits</TD><TD></TD></TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+  <RESOURCE type="meta" utype="adhoc:service" ID="soda">
+    <PARAM name="standardID" datatype="char" arraysize="*" value="ivo://ivoa.net/std/SODA#sync-1.0"/>
+    <PARAM name="accessURL" datatype="char" arraysize="*" value="http://example.com/soda/sync"/>
+    <GROUP name="inputParams">
+      <PARAM name="ID" datatype="char" arraysize="*" value="ivo://cadc.nrc.ca/IRIS?f212h000/IRAS-25um"/>
+      <PARAM name="CIRCLE" datatype="double" arraysize="3" xtype="circle" unit="deg" value=""/>
+    </GROUP>
+  </RESOURCE>
+</VOTABLE>

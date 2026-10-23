@@ -29,3 +29,14 @@ Behaviour `error_documents`: a failed query is the most common thing users hit, 
 - `fail`: the client raises an error without that message, and `note` holds the error's type and first line; or the client raises no error. Network errors are raised, not recorded. A service that gives no message gets no row.
 
 VOTable errors at HTTP 200 and 400 and plain-text errors at HTTP 500 are covered by offline replays only.
+
+## DataLink and cutouts
+
+Behaviour `datalink_cutout`: a cutout gets the pixels around a target without downloading the whole image. pyvo (`DatalinkRecord.processed`) and astroquery (`Cadc.get_image_list`) each take one CADC image from its ObsCore table, follow the image's DataLink to its `#cutout` SODA service and ask for a circle of radius 0.1° around the image centre.
+
+- `pass`: the client hands back a FITS image whose two axes each span 0.2°, to within two pixels.
+- `fail`: the client raises its own error, and `note` holds the error's type and first line; or it finds no `#cutout` link; or what comes back is not a FITS image, or has no pixel scale (`CDELT1`, `CDELT2`), or is not the size asked for. Network errors are raised, not recorded.
+
+SODA errors at HTTP 500 and DataLinks without a `#cutout` link are covered by offline replays only.
+
+IRSA, ARI and MAST are left out: IRSA serves cutouts from its own Cutouts service rather than SODA, ARI serves Gaia catalogues and no images, and MAST's cutouts (TESScut, HAPCut, ZCut) are not SODA.

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VOTABLE version="1.4" xmlns="http://www.ivoa.net/xml/VOTable/v1.3">
+  <RESOURCE type="results">
+    <INFO name="QUERY_STATUS" value="OK"/>
+    <TABLE>
+      <FIELD name="obs_publisher_did" datatype="char" arraysize="*"/>
+      <FIELD name="s_ra" datatype="double" unit="deg"/>
+      <FIELD name="s_dec" datatype="double" unit="deg"/>
+      <FIELD name="access_url" datatype="char" arraysize="*"/>
+      <FIELD name="access_format" datatype="char" arraysize="*"/>
+      <DATA>
+        <TABLEDATA>
+          <TR><TD>ivo://cadc.nrc.ca/IRIS?f212h000/IRAS-25um</TD><TD>150.1</TD><TD>2.2</TD><TD>http://example.com/datalink?ID=ivo%3A%2F%2Fcadc.nrc.ca%2FIRIS%3Ff212h000%2FIRAS-25um</TD><TD>application/x-votable+xml;content=datalink</TD></TR>
+        </TABLEDATA>
+      </DATA>
+    </TABLE>
+  </RESOURCE>
+</VOTABLE>
