@@ -1,13 +1,31 @@
 import json
+import socket
 import subprocess
 import time
 from pathlib import Path
 
 import pytest
+import requests
 
-from vo_conformance.runner import OUTCOMES, Row, record, run_cell
+from vo_conformance.checks import async_jobs
+from vo_conformance.runner import OUTCOMES, Row, guarded, record, run_cell
 
 ROOT = Path(__file__).resolve().parent.parent
+URL = "http://example.com/tap"
+
+
+def http_error(status):
+    response = requests.Response()
+    response.status_code = status
+    response.url = f"{URL}/async"
+    return requests.HTTPError(response=response)
+
+
+def raising(error):
+    def check(client, service):
+        raise error
+
+    return check
 
 
 def passes(client, service):
@@ -25,6 +43,10 @@ def hangs(client, service):
 
 def raises(client, service):
     raise RuntimeError("network down")
+
+
+def unavailable(client, service):
+    raise http_error(503)
 
 
 def test_record_round_trip(tmp_path):
@@ -71,6 +93,48 @@ def test_run_cell_times_out():
 def test_run_cell_raises_check_error():
     with pytest.raises(RuntimeError):
         run_cell("pyvo", "CADC", "async_jobs", raises)
+
+
+def test_run_cell_records_service_down():
+    assert run_cell("pyvo", "CADC", "async_jobs", unavailable) == Row(
+        "pyvo", "CADC", "async_jobs", "service down", f"HTTP 503 {URL}/async"
+    )
+
+
+def test_pyvo_service_down(requests_mock, monkeypatch):
+    monkeypatch.setitem(async_jobs.SERVICES, "TEST", (URL, "SELECT 1"))
+    requests_mock.post(f"{URL}/async", status_code=503, text="temporarily unavailable: null")
+    assert guarded(async_jobs.check, "pyvo", "TEST") == ("service down", f"HTTP 503 {URL}/async")
+    requests_mock.post(f"{URL}/async", exc=requests.ConnectionError)
+    assert guarded(async_jobs.check, "pyvo", "TEST") == ("service down", "ConnectionError")
+
+
+@pytest.mark.parametrize(
+    ("error", "note"),
+    [
+        (requests.HTTPError("Error 503:\ntemporarily unavailable: null"), "HTTP 503"),
+        (ConnectionRefusedError(), "ConnectionRefusedError"),
+        (socket.gaierror(), "gaierror"),
+    ],
+)
+def test_astroquery_service_down(error, note):
+    assert guarded(raising(error), "astroquery", "CADC") == ("service down", note)
+
+
+@pytest.mark.parametrize(
+    "error",
+    [
+        requests.Timeout(),
+        requests.ConnectTimeout(),
+        TimeoutError(),
+        http_error(404),
+        requests.HTTPError("Error 400: "),
+        RuntimeError(),
+    ],
+)
+def test_guarded_raises(error):
+    with pytest.raises(type(error)):
+        guarded(raising(error), "pyvo", "CADC")
 
 
 def test_record_appends(tmp_path):
