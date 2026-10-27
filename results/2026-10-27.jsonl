@@ -1,0 +1,18 @@
+{"client": "pyvo", "service": "CADC", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "IRSA", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "ARI", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "MAST", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "CADC", "behaviour": "async_jobs", "outcome": "fail"}
+{"client": "astroquery", "service": "IRSA", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "ARI", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "astroquery", "service": "MAST", "behaviour": "async_jobs", "outcome": "pass"}
+{"client": "pyvo", "service": "CADC", "behaviour": "datalink_cutout", "outcome": "fail", "note": "DALQueryError: Failed to obtain JDBC Connection; nested exception is org.apache.tomcat.jdbc.pool.PoolExhaustedException: [request-proc-108] Timeout: Pool empty. Unable to fetch a connection in 20 seco"}
+{"client": "astroquery", "service": "CADC", "behaviour": "datalink_cutout", "outcome": "pass"}
+{"client": "pyvo", "service": "CADC", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "pyvo", "service": "IRSA", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "pyvo", "service": "ARI", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "pyvo", "service": "MAST", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "astroquery", "service": "CADC", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "astroquery", "service": "IRSA", "behaviour": "error_documents", "outcome": "fail", "note": "ValueError: No table found"}
+{"client": "astroquery", "service": "ARI", "behaviour": "error_documents", "outcome": "pass"}
+{"client": "astroquery", "service": "MAST", "behaviour": "error_documents", "outcome": "fail", "note": "HTTPError: Error 400: "}
